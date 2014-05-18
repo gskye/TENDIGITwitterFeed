@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTGetJson.h"
+#import "TTTweet.h"
 
 @interface TTViewController : UIViewController
+
+@property (nonatomic, strong) TTGetJson *json;
+@property (nonatomic, strong) TTTweet *tweet;
+@property (nonatomic, strong) NSArray *allTweets;
 
 @end
