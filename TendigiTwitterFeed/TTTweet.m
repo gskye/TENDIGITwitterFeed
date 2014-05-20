@@ -36,6 +36,7 @@
 		self.tweetText = tweetText;
 		self.profileScreenName = profileScreenName;
 		
+		NSLog(@"%@,%@,%@,%@,%@",self.profileTitle,self.dateOfTweet,self.profileImageURL,self.tweetText,self.profileScreenName);
 	}
 	
 	

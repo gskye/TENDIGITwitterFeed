@@ -11,6 +11,6 @@
 @interface TTGetJson : NSObject
 
 @property (strong) NSArray *fetchedData;
--(id)initWithJson:(NSString*)jsonURL;
+-(id)initWithJson:(NSString*)screenName;
 
 @end

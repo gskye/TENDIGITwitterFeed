@@ -7,47 +7,55 @@
 //
 
 #import "TTGetJson.h"
-#import "AFNetworking.h"
+#import "STTwitterAPI.h"
 
-NSString *const URL_STRING = @"https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=TENDIGI&count=1";
+NSString *const TWITTER_USER = @"TENDIGI";
+NSString *const KEY = @"IksqzfZL55wmfhw2o1wPydklP";
+NSString *const SECRET = @"yzlzdPLiRFWtea7R2voHhZjVEGDgNtL4hBNx9Hy6BIC8Wkq61h";
 
 @implementation TTGetJson
 
 -(id)init {
 	
-	return [self initWithJson:URL_STRING];
+	return [self initWithJson:TWITTER_USER];
 }
 
--(id)initWithJson:(NSString*)jsonURL {
+-(id)initWithJson:(NSString*)screenName {
 	
 	self = [super init];
 	
 	if (self) {
-		NSURL *url = [[NSURL alloc] initWithString:jsonURL];
-		NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-		AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
-											 initWithRequest:request];
-		operation.responseSerializer = [AFJSONResponseSerializer serializer];
-		[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id JSON) {
+		
+		STTwitterAPI *twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:KEY
+																consumerSecret:SECRET];
+		
+		[twitter verifyCredentialsWithSuccessBlock:^(NSString *bearerToken) {
 			
-			NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-			for (NSDictionary *data in JSON) {
+			NSLog(@"Access granted with %@", bearerToken);
+			
+			[twitter getUserTimelineWithScreenName:screenName successBlock:^(NSArray *statuses) {
 				
-				[tempArray addObject:data];
-			}
-			self.fetchedData = [[NSArray alloc] initWithArray:tempArray];
-
+				self.fetchedData = [[NSArray alloc] initWithArray:statuses];
+				
+				
+				NSLog(@"statuses: %@", self.fetchedData);
+				if (self.fetchedData) {
+					[[NSNotificationCenter defaultCenter] postNotificationName:@"initWithJSONFinishedLoading"	object:nil];
+				}
+				
+			} errorBlock:^(NSError *error) {
+				
+				NSLog(@"error: %@", error);
+			}];
 			
-			[[NSNotificationCenter defaultCenter] postNotificationName:@"initWithJSONFinishedLoading"
-																object:nil];
 			
-		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-			NSLog(@"NSError: %@",error.localizedDescription);
+		} errorBlock:^(NSError *error) {
+			NSLog(@"error %@", error);
 		}];
-		[operation start];
+
+		
 	}
-	
-	return self;
+		return self;
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "TTViewController.h"
+#import "TTTweetCell.h"
 
 @interface TTViewController () <UITableViewDelegate , UITableViewDataSource>
 
@@ -32,17 +33,17 @@
 -(void)dataRetrieved {
 	NSLog(@"data was retrieved");
 	
-	NSMutableArray *tempArray = [NSMutableArray alloc];
+	NSMutableArray *tempArray = [[NSMutableArray alloc] init];
 	for (NSDictionary *data in self.json.fetchedData) {
 		TTTweet *newTweet = [[TTTweet alloc] initWithTitle:data[@"user"][@"name"]
-													  date:data[@"user"][@"created_at"]
-													 image:data[@"profile_image_url_https"]
+													  date:data[@"created_at"]
+													 image:data[@"user"][@"profile_image_url_https"]
 													  text:data[@"text"]
 												screenName:data[@"screen_name"]];
 		[tempArray addObject:newTweet];
 	}
 	self.allTweets = [[NSArray alloc] initWithArray:tempArray];
-	
+
 	[self.tableView reloadData];
 }
 
@@ -55,20 +56,17 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return self.allTweets.count;
+    return [self.allTweets count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+	id cell = nil;
+	switch (indexPath.row) {
+		default:
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TTTweetCellReuseIdentifier];
+			break;
 	}
-    
-    // Configure the cell
-	cell.backgroundColor = [UIColor clearColor];
-	cell.textLabel.textColor = [UIColor whiteColor];
 	
     return cell;
 }
@@ -80,6 +78,8 @@
 	//Getting and setting the fetched strings from the JSON data
 	
 }
+
+#pragma mark - Convenience Methods
 
 #pragma mark - UIScrollView Delegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {

@@ -42,6 +42,7 @@
                     <connections>
                         <outlet property="cityImageBlur" destination="nA1-oo-RdB" id="voY-eO-Z3V"/>
                         <outlet property="cityImageClear" destination="QMx-g5-8yU" id="0dy-TY-Dt9"/>
+                        <outlet property="tableView" destination="V9a-7w-jfM" id="OZs-IW-8UI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
