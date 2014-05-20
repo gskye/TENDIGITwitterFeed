@@ -19,11 +19,34 @@
 
 @implementation TTViewController
 
-- (void)viewDidLoad
+-(void)awakeFromNib {
+	[super awakeFromNib];
+	self.allTweets = [NSArray new];
+}
+
+//-(void)viewDidAppear:(BOOL)animated {
+//	[super viewDidAppear:animated];
+//	
+//}
+
+-(void)viewDidLoad
 {
     [super viewDidLoad];
+	[self retrieveTweetData];
+	[self registerNibs];
+	[self subscribeToNotifications];
+}
 
+-(void)registerNibs {
+	[self.tableView registerNib:[UINib nibWithNibName:@"TTTweetCell" bundle:nil]
+		 forCellReuseIdentifier:TTTweetCellReuseIdentifier];
+}
+
+-(void)retrieveTweetData {
 	self.json = [[TTGetJson alloc] init];
+}
+
+-(void)subscribeToNotifications {
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(dataRetrieved)
 												 name:@"initWithJSONFinishedLoading"
@@ -39,10 +62,10 @@
 													  date:data[@"created_at"]
 													 image:data[@"user"][@"profile_image_url_https"]
 													  text:data[@"text"]
-												screenName:data[@"screen_name"]];
+												screenName:data[@"user"][@"screen_name"]];
 		[tempArray addObject:newTweet];
 	}
-	self.allTweets = [[NSArray alloc] initWithArray:tempArray];
+	self.allTweets = tempArray;
 
 	[self.tableView reloadData];
 }
@@ -56,6 +79,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
+
     return [self.allTweets count];
 }
 
@@ -64,7 +88,15 @@
 	id cell = nil;
 	switch (indexPath.row) {
 		default:
-			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TTTweetCellReuseIdentifier];
+			
+			for (TTTweet *tweet in self.allTweets) {
+				NSLog(@"%@",tweet);
+			}
+			
+			cell = [tableView dequeueReusableCellWithIdentifier:TTTweetCellReuseIdentifier];
+			TTTweet *tweet = [self tweetObjectAtIndex:indexPath];
+			NSLog(@"%@",tweet.profileTitle);
+			[cell configureCellWithTweetObject:tweet];
 			break;
 	}
 	
@@ -75,11 +107,18 @@
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	//Getting and setting the fetched strings from the JSON data
 	
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return TTTweetCellHeight;
+}
+
 #pragma mark - Convenience Methods
+-(TTTweet*)tweetObjectAtIndex:(NSIndexPath *)index {
+	return self.allTweets[index.row];
+}
+
 
 #pragma mark - UIScrollView Delegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {

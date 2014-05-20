@@ -10,6 +10,7 @@
 #import "TTTweet.h"
 
 extern NSString *const TTTweetCellReuseIdentifier;
+extern CGFloat const TTTweetCellHeight;
 
 @interface TTTweetCell : UITableViewCell
 

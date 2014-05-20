@@ -9,21 +9,28 @@
 #import "TTTweetCell.h"
 
 NSString * const TTTweetCellReuseIdentifier = @"TTTweetCellReuseIdentifier";
+CGFloat const TTTweetCellHeight = 125.0f;
+
 @interface TTTweetCell ()
 
-@property (nonatomic,strong) IBOutlet UITextField *name;
-@property (nonatomic,strong) IBOutlet UITextField *screenName;
-@property (nonatomic,strong) IBOutlet UITextField *date;
+@property (nonatomic,strong) IBOutlet UILabel *name;
+@property (nonatomic,strong) IBOutlet UILabel *screenName;
+@property (nonatomic,strong) IBOutlet UILabel *date;
 @property (nonatomic,strong) IBOutlet UITextView *text;
 @property (nonatomic,strong) IBOutlet UIImageView *profileImage;
 
+//profileTitle;
+//dateOfTweet;
+//profileImageURL;
+//tweetText;
+//profileScreenName;
 @end
 
 @implementation TTTweetCell
 
 - (void)awakeFromNib
 {
-    // Initialization code
+	[super awakeFromNib];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -34,7 +41,11 @@ NSString * const TTTweetCellReuseIdentifier = @"TTTweetCellReuseIdentifier";
 }
 
 -(void)configureCellWithTweetObject:(TTTweet *)tweet {
-	
+	[self.name setText:tweet.profileTitle];
+	[self.screenName setText:tweet.profileScreenName];
+	[self.date setText:tweet.dateOfTweet];
+	[self.text setText:tweet.tweetText];
+
 }
 
 @end
