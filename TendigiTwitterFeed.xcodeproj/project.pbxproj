@@ -43,6 +43,10 @@
 		318B348419294AA600690BE7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318B348319294AA600690BE7 /* Accounts.framework */; };
 		318B3489192AC6E500690BE7 /* TTTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 318B3487192AC6E500690BE7 /* TTTweetCell.m */; };
 		318B348A192AC6E500690BE7 /* TTTweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 318B3488192AC6E500690BE7 /* TTTweetCell.xib */; };
+		318B348E192BE5AE00690BE7 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 318B348D192BE5AE00690BE7 /* NSDate+TimeAgo.m */; };
+		318B3490192BED1900690BE7 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 318B348F192BED1900690BE7 /* NSDateTimeAgo.bundle */; };
+		318B3494192BEFD700690BE7 /* TTTwitterFeedHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 318B3492192BEFD700690BE7 /* TTTwitterFeedHeadCell.m */; };
+		318B3495192BEFD700690BE7 /* TTTwitterFeedHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 318B3493192BEFD700690BE7 /* TTTwitterFeedHeadCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +119,12 @@
 		318B3486192AC6E500690BE7 /* TTTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTweetCell.h; sourceTree = "<group>"; };
 		318B3487192AC6E500690BE7 /* TTTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTweetCell.m; sourceTree = "<group>"; };
 		318B3488192AC6E500690BE7 /* TTTweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTTweetCell.xib; sourceTree = "<group>"; };
+		318B348C192BE5AE00690BE7 /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeAgo.h"; sourceTree = "<group>"; };
+		318B348D192BE5AE00690BE7 /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeAgo.m"; sourceTree = "<group>"; };
+		318B348F192BED1900690BE7 /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NSDateTimeAgo.bundle; path = "../../../../Downloads/NSDate-TimeAgo-master/NSDateTimeAgo.bundle"; sourceTree = "<group>"; };
+		318B3491192BEFD700690BE7 /* TTTwitterFeedHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTwitterFeedHeadCell.h; sourceTree = "<group>"; };
+		318B3492192BEFD700690BE7 /* TTTwitterFeedHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTwitterFeedHeadCell.m; sourceTree = "<group>"; };
+		318B3493192BEFD700690BE7 /* TTTwitterFeedHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTTwitterFeedHeadCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +202,7 @@
 				318B340419270BFD00690BE7 /* Main.storyboard */,
 				318B340A19270BFD00690BE7 /* Images.xcassets */,
 				318B3446192713F100690BE7 /* Resources */,
+				318B348B192BE5AE00690BE7 /* NSDATETimeAgo */,
 				318B34561929472F00690BE7 /* STTwitter */,
 				318B33F919270BFD00690BE7 /* Supporting Files */,
 			);
@@ -294,8 +305,22 @@
 				318B3488192AC6E500690BE7 /* TTTweetCell.xib */,
 				318B3486192AC6E500690BE7 /* TTTweetCell.h */,
 				318B3487192AC6E500690BE7 /* TTTweetCell.m */,
+				318B3493192BEFD700690BE7 /* TTTwitterFeedHeadCell.xib */,
+				318B3491192BEFD700690BE7 /* TTTwitterFeedHeadCell.h */,
+				318B3492192BEFD700690BE7 /* TTTwitterFeedHeadCell.m */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		318B348B192BE5AE00690BE7 /* NSDATETimeAgo */ = {
+			isa = PBXGroup;
+			children = (
+				318B348F192BED1900690BE7 /* NSDateTimeAgo.bundle */,
+				318B348C192BE5AE00690BE7 /* NSDate+TimeAgo.h */,
+				318B348D192BE5AE00690BE7 /* NSDate+TimeAgo.m */,
+			);
+			name = NSDATETimeAgo;
+			path = ../../iOS_Libraries/NSDATETimeAgo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,6 +403,8 @@
 				318B344F1927167700690BE7 /* citybackground_clear.png in Resources */,
 				318B340B19270BFD00690BE7 /* Images.xcassets in Resources */,
 				318B33FD19270BFD00690BE7 /* InfoPlist.strings in Resources */,
+				318B3495192BEFD700690BE7 /* TTTwitterFeedHeadCell.xib in Resources */,
+				318B3490192BED1900690BE7 /* NSDateTimeAgo.bundle in Resources */,
 				318B340619270BFD00690BE7 /* Main.storyboard in Resources */,
 				318B344E1927167700690BE7 /* citybackground_blur.png in Resources */,
 				318B348A192AC6E500690BE7 /* TTTweetCell.xib in Resources */,
@@ -414,9 +441,11 @@
 				318B340919270BFD00690BE7 /* TTViewController.m in Sources */,
 				318B3489192AC6E500690BE7 /* TTTweetCell.m in Sources */,
 				318B345219290C7900690BE7 /* TTGetJson.m in Sources */,
+				318B348E192BE5AE00690BE7 /* NSDate+TimeAgo.m in Sources */,
 				318B34751929472F00690BE7 /* NSError+STTwitter.m in Sources */,
 				318B347B1929472F00690BE7 /* STTwitterOAuth.m in Sources */,
 				318B34551929289600690BE7 /* TTTweet.m in Sources */,
+				318B3494192BEFD700690BE7 /* TTTwitterFeedHeadCell.m in Sources */,
 				318B347F1929472F00690BE7 /* JSONSyntaxHighlight.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

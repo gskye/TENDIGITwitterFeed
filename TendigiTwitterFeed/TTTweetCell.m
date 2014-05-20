@@ -7,23 +7,17 @@
 //
 
 #import "TTTweetCell.h"
+#import "NSDate+TimeAgo.h"
 
 NSString * const TTTweetCellReuseIdentifier = @"TTTweetCellReuseIdentifier";
-CGFloat const TTTweetCellHeight = 125.0f;
+CGFloat const TTTweetCellHeight = 75.0f;
 
 @interface TTTweetCell ()
 
-@property (nonatomic,strong) IBOutlet UILabel *name;
 @property (nonatomic,strong) IBOutlet UILabel *screenName;
 @property (nonatomic,strong) IBOutlet UILabel *date;
 @property (nonatomic,strong) IBOutlet UITextView *text;
-@property (nonatomic,strong) IBOutlet UIImageView *profileImage;
 
-//profileTitle;
-//dateOfTweet;
-//profileImageURL;
-//tweetText;
-//profileScreenName;
 @end
 
 @implementation TTTweetCell
@@ -41,11 +35,23 @@ CGFloat const TTTweetCellHeight = 125.0f;
 }
 
 -(void)configureCellWithTweetObject:(TTTweet *)tweet {
-	[self.name setText:tweet.profileTitle];
-	[self.screenName setText:tweet.profileScreenName];
-	[self.date setText:tweet.dateOfTweet];
+	[self.screenName setText:[NSString stringWithFormat:@"@%@",tweet.profileScreenName]];
+	[self.date setText:[self dateFormatWithString:tweet.dateOfTweet]];
 	[self.text setText:tweet.tweetText];
+}
 
+-(NSString*)dateFormatWithString:(NSString*)date {
+	NSDateFormatter *format = [[NSDateFormatter alloc] init];
+	[format setDateFormat:@"EEE MMM dd HH:mm:ss '+0000' yyyy"];
+	[format setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+	
+	NSDate *dateToFormat = [format dateFromString:date];
+	NSTimeInterval timeInterval = [dateToFormat timeIntervalSinceNow];
+	NSDate *dateOfTweet = [[NSDate alloc] initWithTimeIntervalSinceNow:timeInterval];
+	NSString *ago = [dateOfTweet dateTimeAgo];
+	
+	NSLog(@"%@",ago);
+	return ago;
 }
 
 @end

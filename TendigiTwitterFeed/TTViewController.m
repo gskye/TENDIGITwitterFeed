@@ -8,11 +8,10 @@
 
 #import "TTViewController.h"
 #import "TTTweetCell.h"
+#import "TTTwitterFeedHeadCell.h"
 
 @interface TTViewController () <UITableViewDelegate , UITableViewDataSource>
 
-@property (nonatomic, strong) IBOutlet UIImageView *cityImageClear;
-@property (nonatomic, strong) IBOutlet UIImageView *cityImageBlur;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
@@ -23,11 +22,6 @@
 	[super awakeFromNib];
 	self.allTweets = [NSArray new];
 }
-
-//-(void)viewDidAppear:(BOOL)animated {
-//	[super viewDidAppear:animated];
-//	
-//}
 
 -(void)viewDidLoad
 {
@@ -40,6 +34,7 @@
 -(void)registerNibs {
 	[self.tableView registerNib:[UINib nibWithNibName:@"TTTweetCell" bundle:nil]
 		 forCellReuseIdentifier:TTTweetCellReuseIdentifier];
+	[self.tableView registerNib:[UINib nibWithNibName:@"TTTwitterFeedHeadCell" bundle:nil] forCellReuseIdentifier:TTTwitterFeedHeadCellReuseIdentifier];
 }
 
 -(void)retrieveTweetData {
@@ -87,6 +82,9 @@
 {
 	id cell = nil;
 	switch (indexPath.row) {
+		case 0:
+			cell = [tableView dequeueReusableCellWithIdentifier:TTTwitterFeedHeadCellReuseIdentifier];
+			break;
 		default:
 			
 			for (TTTweet *tweet in self.allTweets) {
@@ -106,26 +104,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	
-	
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.row == 0) {
+		return TTTwitterFeedHeadCellHeight;
+	}
 	return TTTweetCellHeight;
 }
 
 #pragma mark - Convenience Methods
 -(TTTweet*)tweetObjectAtIndex:(NSIndexPath *)index {
 	return self.allTweets[index.row];
-}
-
-
-#pragma mark - UIScrollView Delegate
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-	CGFloat scrollViewYOffset = scrollView.contentOffset.y;
-    CGFloat screenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
-    CGFloat newAlpha = scrollViewYOffset / screenHeight;
-    [self.cityImageBlur setAlpha:newAlpha];
 }
 
 - (void)didReceiveMemoryWarning
