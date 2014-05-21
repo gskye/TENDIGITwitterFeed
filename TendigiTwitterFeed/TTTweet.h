@@ -10,16 +10,12 @@
 
 @interface TTTweet : NSObject
 
-@property (strong, nonatomic) NSString *profileTitle;
 @property (strong, nonatomic) NSString *dateOfTweet;
-@property (strong, nonatomic) NSString *profileImageURL;
 @property (strong, nonatomic) NSString *tweetText;
 @property (strong, nonatomic) NSString *profileScreenName;
 
--(id)initWithTitle:(NSString*)profileTitle
+-(id)initWithText:(NSString*)tweetText
 			  date:(NSString*)dateOfTweet
-			 image:(NSString*)profileImageURL
-			  text:(NSString*)tweetText
 		screenName:(NSString*)profileScreenName;
 
 @end

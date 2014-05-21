@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "TTGetJson.h"
 #import "TTTweet.h"
+#import "TTTwitterFeed.h"
 
-@interface TTViewController : UIViewController
+@interface TTViewController : UIViewController <NSURLConnectionDelegate>
 
 @property (nonatomic, strong) TTGetJson *json;
-@property (nonatomic, strong) TTTweet *tweet;
+@property (nonatomic, strong) TTTwitterFeed *feedHead;
 @property (nonatomic, strong) NSArray *allTweets;
 
 @end

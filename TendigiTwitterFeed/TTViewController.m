@@ -9,6 +9,8 @@
 #import "TTViewController.h"
 #import "TTTweetCell.h"
 #import "TTTwitterFeedHeadCell.h"
+#import "TTImage.h"
+#import "TTTwitterFeed.h"
 
 @interface TTViewController () <UITableViewDelegate , UITableViewDataSource>
 
@@ -37,9 +39,6 @@
 	[self.tableView registerNib:[UINib nibWithNibName:@"TTTwitterFeedHeadCell" bundle:nil] forCellReuseIdentifier:TTTwitterFeedHeadCellReuseIdentifier];
 }
 
--(void)retrieveTweetData {
-	self.json = [[TTGetJson alloc] init];
-}
 
 -(void)subscribeToNotifications {
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -48,21 +47,58 @@
 											   object:nil];
 }
 
+#pragma mark - getting tweets
+
+-(void)retrieveTweetData {
+	self.json = [[TTGetJson alloc] init];
+}
+
 -(void)dataRetrieved {
 	NSLog(@"data was retrieved");
 	
 	NSMutableArray *tempArray = [[NSMutableArray alloc] init];
 	for (NSDictionary *data in self.json.fetchedData) {
-		TTTweet *newTweet = [[TTTweet alloc] initWithTitle:data[@"user"][@"name"]
-													  date:data[@"created_at"]
-													 image:data[@"user"][@"profile_image_url_https"]
-													  text:data[@"text"]
-												screenName:data[@"user"][@"screen_name"]];
-		[tempArray addObject:newTweet];
+		
+		if (self.json.fetchedData.firstObject) {
+			[self createTwitterFeedHeadWithData:data];
+		}
+		[tempArray addObject:[self createTweetWithData:data]];
 	}
 	self.allTweets = tempArray;
 
 	[self.tableView reloadData];
+}
+
+-(void)createTwitterFeedHeadWithData:(NSDictionary*)data {
+	NSString *pImageString = [NSString stringWithFormat:@"%@",data[@"user"][@"profile_image_url"]];
+
+	UIImage *pImage = [self loadImageWithString:pImageString];
+		
+	self.feedHead = [[TTTwitterFeed alloc] initWithDescription:data[@"user"][@"description"]
+													  location:data[@"user"][@"location"]
+														   URL:data[@"user"][@"entities"][@"url"][@"urls"][0][@"display_url"]
+												  profileImage:pImage];
+}
+
+-(UIImage*)loadImageWithString:(NSString*)string {
+	NSURL *url = [NSURL URLWithString:string];
+	NSData *imageData = [NSData dataWithContentsOfURL:url];
+	UIImage *downloadedImage = [[UIImage alloc] initWithData:imageData];
+	
+	NSLog(@"Downloaded");
+	return downloadedImage;
+}
+
+-(TTTweet*)createTweetWithData:(NSDictionary*)data {
+	TTTweet *newTweet = [[TTTweet alloc] initWithText:data[@"text"]
+												 date:data[@"created_at"]
+										   screenName:data[@"user"][@"screen_name"]];
+	return newTweet;
+}
+
+#pragma mark - Convenience Methods
+-(TTTweet*)tweetObjectAtIndex:(NSIndexPath *)index {
+	return self.allTweets[index.row];
 }
 
 #pragma mark - UITableViewDelegate Methods
@@ -84,6 +120,7 @@
 	switch (indexPath.row) {
 		case 0:
 			cell = [tableView dequeueReusableCellWithIdentifier:TTTwitterFeedHeadCellReuseIdentifier];
+			[cell configureHeadCellWithFeedObject:self.feedHead];
 			break;
 		default:
 			
@@ -93,7 +130,6 @@
 			
 			cell = [tableView dequeueReusableCellWithIdentifier:TTTweetCellReuseIdentifier];
 			TTTweet *tweet = [self tweetObjectAtIndex:indexPath];
-			NSLog(@"%@",tweet.profileTitle);
 			[cell configureCellWithTweetObject:tweet];
 			break;
 	}
@@ -113,10 +149,6 @@
 	return TTTweetCellHeight;
 }
 
-#pragma mark - Convenience Methods
--(TTTweet*)tweetObjectAtIndex:(NSIndexPath *)index {
-	return self.allTweets[index.row];
-}
 
 - (void)didReceiveMemoryWarning
 {

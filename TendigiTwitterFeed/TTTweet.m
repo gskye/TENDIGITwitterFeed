@@ -11,35 +11,27 @@
 @implementation TTTweet
 
 -(id)init {
-	self = [self initWithTitle:@"defaultTitle"
-						  date:@"defaultName"
-						 image:@"defaultImage"
-						  text:@"defaultText"
+	self = [self initWithText:@"defaultText"
+						  date:@"defaultDate"
 					screenName:@"defaultScreenName"];
 	return self;
 }
 
 
--(id)initWithTitle:(NSString *)profileTitle
-			  date:(NSString *)dateOfTweet
-			 image:(NSString *)profileImageURL
-			  text:(NSString *)tweetText
-		screenName:(NSString *)profileScreenName {
+-(id)initWithText:(NSString *)tweetText
+			 date:(NSString *)dateOfTweet
+	   screenName:(NSString *)profileScreenName {
 	
 	self = [super init];
 	
 	if (self) {
 		
-		self.profileTitle = profileTitle;
 		self.dateOfTweet = dateOfTweet;
-		self.profileImageURL = profileImageURL;
 		self.tweetText = tweetText;
 		self.profileScreenName = profileScreenName;
 		
 //		NSLog(@"%@,%@,%@,%@,%@",self.profileTitle,self.dateOfTweet,self.profileImageURL,self.tweetText,self.profileScreenName);
 	}
-	
-	
 	
 	return self;
 }

@@ -47,6 +47,8 @@
 		318B3490192BED1900690BE7 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 318B348F192BED1900690BE7 /* NSDateTimeAgo.bundle */; };
 		318B3494192BEFD700690BE7 /* TTTwitterFeedHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 318B3492192BEFD700690BE7 /* TTTwitterFeedHeadCell.m */; };
 		318B3495192BEFD700690BE7 /* TTTwitterFeedHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 318B3493192BEFD700690BE7 /* TTTwitterFeedHeadCell.xib */; };
+		318B3498192BF80000690BE7 /* TTImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 318B3497192BF80000690BE7 /* TTImage.m */; };
+		318B349B192BF82400690BE7 /* TTTwitterFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 318B349A192BF82400690BE7 /* TTTwitterFeed.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +127,10 @@
 		318B3491192BEFD700690BE7 /* TTTwitterFeedHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTwitterFeedHeadCell.h; sourceTree = "<group>"; };
 		318B3492192BEFD700690BE7 /* TTTwitterFeedHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTwitterFeedHeadCell.m; sourceTree = "<group>"; };
 		318B3493192BEFD700690BE7 /* TTTwitterFeedHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTTwitterFeedHeadCell.xib; sourceTree = "<group>"; };
+		318B3496192BF80000690BE7 /* TTImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTImage.h; sourceTree = "<group>"; };
+		318B3497192BF80000690BE7 /* TTImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImage.m; sourceTree = "<group>"; };
+		318B3499192BF82400690BE7 /* TTTwitterFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTwitterFeed.h; sourceTree = "<group>"; };
+		318B349A192BF82400690BE7 /* TTTwitterFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTwitterFeed.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +204,10 @@
 				318B345119290C7900690BE7 /* TTGetJson.m */,
 				318B34531929289600690BE7 /* TTTweet.h */,
 				318B34541929289600690BE7 /* TTTweet.m */,
+				318B3499192BF82400690BE7 /* TTTwitterFeed.h */,
+				318B349A192BF82400690BE7 /* TTTwitterFeed.m */,
+				318B3496192BF80000690BE7 /* TTImage.h */,
+				318B3497192BF80000690BE7 /* TTImage.m */,
 				318B3485192AC67800690BE7 /* Cell */,
 				318B340419270BFD00690BE7 /* Main.storyboard */,
 				318B340A19270BFD00690BE7 /* Images.xcassets */,
@@ -435,6 +445,7 @@
 				318B347A1929472F00690BE7 /* STTwitterHTML.m in Sources */,
 				318B34801929472F00690BE7 /* STHTTPRequest.m in Sources */,
 				318B34741929472F00690BE7 /* NSDateFormatter+STTwitter.m in Sources */,
+				318B3498192BF80000690BE7 /* TTImage.m in Sources */,
 				318B347C1929472F00690BE7 /* STTwitterOS.m in Sources */,
 				318B34791929472F00690BE7 /* STTwitterAppOnly.m in Sources */,
 				318B33FF19270BFD00690BE7 /* main.m in Sources */,
@@ -446,6 +457,7 @@
 				318B347B1929472F00690BE7 /* STTwitterOAuth.m in Sources */,
 				318B34551929289600690BE7 /* TTTweet.m in Sources */,
 				318B3494192BEFD700690BE7 /* TTTwitterFeedHeadCell.m in Sources */,
+				318B349B192BF82400690BE7 /* TTTwitterFeed.m in Sources */,
 				318B347F1929472F00690BE7 /* JSONSyntaxHighlight.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "TTTweet.h"
-
+#import "TTTwitterFeed.h"
 
 extern NSString *const TTTwitterFeedHeadCellReuseIdentifier;
 extern CGFloat const TTTwitterFeedHeadCellHeight;
 
 @interface TTTwitterFeedHeadCell : UITableViewCell
 
+@property (nonatomic,strong) IBOutlet UIImageView *profile_image;
+@property (nonatomic,strong) IBOutlet UILabel *location;
+@property (nonatomic,strong) IBOutlet UILabel *company;
+@property (nonatomic,strong) IBOutlet UITextView *feed_description;
+
+-(void)configureHeadCellWithFeedObject:(TTTwitterFeed*)feed;
 
 @end
