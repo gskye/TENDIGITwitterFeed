@@ -22,8 +22,6 @@
 		318B341C19270BFD00690BE7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 318B341A19270BFD00690BE7 /* InfoPlist.strings */; };
 		318B341E19270BFD00690BE7 /* TendigiTwitterFeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 318B341D19270BFD00690BE7 /* TendigiTwitterFeedTests.m */; };
 		318B342819270D2B00690BE7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318B342719270D2B00690BE7 /* Social.framework */; };
-		318B344E1927167700690BE7 /* citybackground_blur.png in Resources */ = {isa = PBXBuildFile; fileRef = 318B344C1927167700690BE7 /* citybackground_blur.png */; };
-		318B344F1927167700690BE7 /* citybackground_clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 318B344D1927167700690BE7 /* citybackground_clear.png */; };
 		318B345219290C7900690BE7 /* TTGetJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 318B345119290C7900690BE7 /* TTGetJson.m */; };
 		318B34551929289600690BE7 /* TTTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 318B34541929289600690BE7 /* TTTweet.m */; };
 		318B34741929472F00690BE7 /* NSDateFormatter+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 318B34581929472F00690BE7 /* NSDateFormatter+STTwitter.m */; };
@@ -82,8 +80,6 @@
 		318B341B19270BFD00690BE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		318B341D19270BFD00690BE7 /* TendigiTwitterFeedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TendigiTwitterFeedTests.m; sourceTree = "<group>"; };
 		318B342719270D2B00690BE7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		318B344C1927167700690BE7 /* citybackground_blur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = citybackground_blur.png; sourceTree = "<group>"; };
-		318B344D1927167700690BE7 /* citybackground_clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = citybackground_clear.png; sourceTree = "<group>"; };
 		318B345019290C7900690BE7 /* TTGetJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGetJson.h; sourceTree = "<group>"; };
 		318B345119290C7900690BE7 /* TTGetJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGetJson.m; sourceTree = "<group>"; };
 		318B34531929289600690BE7 /* TTTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTweet.h; sourceTree = "<group>"; };
@@ -259,8 +255,6 @@
 		318B34471927140200690BE7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				318B344C1927167700690BE7 /* citybackground_blur.png */,
-				318B344D1927167700690BE7 /* citybackground_clear.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -410,13 +404,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				318B344F1927167700690BE7 /* citybackground_clear.png in Resources */,
 				318B340B19270BFD00690BE7 /* Images.xcassets in Resources */,
 				318B33FD19270BFD00690BE7 /* InfoPlist.strings in Resources */,
 				318B3495192BEFD700690BE7 /* TTTwitterFeedHeadCell.xib in Resources */,
 				318B3490192BED1900690BE7 /* NSDateTimeAgo.bundle in Resources */,
 				318B340619270BFD00690BE7 /* Main.storyboard in Resources */,
-				318B344E1927167700690BE7 /* citybackground_blur.png in Resources */,
 				318B348A192AC6E500690BE7 /* TTTweetCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
