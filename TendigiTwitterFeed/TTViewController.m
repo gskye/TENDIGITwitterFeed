@@ -57,13 +57,14 @@
 	NSLog(@"data was retrieved");
 	
 	NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+	NSMutableArray *allData = [[NSMutableArray alloc] init];
 	for (NSDictionary *data in self.json.fetchedData) {
 		
-		if (self.json.fetchedData.firstObject) {
-			[self createTwitterFeedHeadWithData:data];
-		}
+		[allData addObject:data];
 		[tempArray addObject:[self createTweetWithData:data]];
+		
 	}
+	[self createTwitterFeedHeadWithData:allData[0]];
 	self.allTweets = tempArray;
 
 	[self.tableView reloadData];
@@ -123,11 +124,6 @@
 			[cell configureHeadCellWithFeedObject:self.feedHead];
 			break;
 		default:
-			
-			for (TTTweet *tweet in self.allTweets) {
-				NSLog(@"%@",tweet);
-			}
-			
 			cell = [tableView dequeueReusableCellWithIdentifier:TTTweetCellReuseIdentifier];
 			TTTweet *tweet = [self tweetObjectAtIndex:indexPath];
 			[cell configureCellWithTweetObject:tweet];

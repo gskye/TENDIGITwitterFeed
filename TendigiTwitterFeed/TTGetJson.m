@@ -38,7 +38,7 @@ NSString *const SECRET = @"yzlzdPLiRFWtea7R2voHhZjVEGDgNtL4hBNx9Hy6BIC8Wkq61h";
 				self.fetchedData = [[NSArray alloc] initWithArray:statuses];
 				
 				
-				NSLog(@"statuses: %@", self.fetchedData);
+//				NSLog(@"statuses: %@", self.fetchedData);
 				if (self.fetchedData) {
 					[[NSNotificationCenter defaultCenter] postNotificationName:@"initWithJSONFinishedLoading"	object:nil];
 				}
