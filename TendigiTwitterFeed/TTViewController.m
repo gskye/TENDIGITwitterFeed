@@ -18,7 +18,9 @@
 
 @end
 
-@implementation TTViewController
+@implementation TTViewController {
+	UIRefreshControl *refreshControl;
+}
 
 -(void)awakeFromNib {
 	[super awakeFromNib];
@@ -28,9 +30,12 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-	[self retrieveTweetData];
+	[self addPullToRefresh];
 	[self registerNibs];
 	[self subscribeToNotifications];
+	
+	[refreshControl beginRefreshing];
+	[self retrieveTweetData];
 }
 
 -(void)registerNibs {
@@ -45,6 +50,14 @@
 											 selector:@selector(dataRetrieved)
 												 name:@"initWithJSONFinishedLoading"
 											   object:nil];
+}
+
+-(void)addPullToRefresh {
+	refreshControl = [[UIRefreshControl alloc] init];
+	[refreshControl addTarget:self
+					   action:@selector(retrieveTweetData)
+			 forControlEvents:UIControlEventValueChanged];
+	[self.tableView addSubview:refreshControl];
 }
 
 #pragma mark - getting tweets
@@ -67,6 +80,7 @@
 	[self createTwitterFeedHeadWithData:allData[0]];
 	self.allTweets = tempArray;
 
+	[refreshControl endRefreshing];
 	[self.tableView reloadData];
 }
 
